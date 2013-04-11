@@ -32,6 +32,26 @@ void i2cReceiveEvent(int numBytes) {
       Wire.read();
     }
   }
+
+  if (i2cRecBuffer[0] >= 0x0D) {
+    int registerbyteCount = sizeof(registers);
+    //Serial.println();
+    byte buf[registerbyteCount];
+    memcpy(&buf, &registers, registerbyteCount);
+    
+    if (numBytes > I2CMAX_IN_BYTES) {
+      numBytes = I2CMAX_IN_BYTES;
+    }
+    
+    byte index = i2cRecBuffer[0];
+    for (int i=1; i < numBytes; i++) {
+      buf[index] = i2cRecBuffer[i];
+      index++;
+    }
+    
+    memcpy(&registers, &buf, registerbyteCount);
+  }
+  
   i2cReceive = true;
   return;
 }

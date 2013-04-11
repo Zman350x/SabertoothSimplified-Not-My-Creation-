@@ -9,7 +9,7 @@
 
 #define RCCHANNELS 4
 #define I2CADR 0x18
-#define I2CMAX_IN_BYTES 3
+#define I2CMAX_IN_BYTES 5
 
 byte i2cRecBuffer[I2CMAX_IN_BYTES];
 boolean i2cReceive = false;
@@ -68,6 +68,7 @@ void loop(){
   // update incoming values
   g_PPMIn.update();
   processRC();
+  bitSet(registers.stateregister, 0);
   
   if (i2cReceive) {
     i2cReceive = false;
