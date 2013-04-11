@@ -1,13 +1,13 @@
 
 void i2cRequestEvent() {
   uint8_t startIndex = i2cRecBuffer[0];
-  uint8_t byteCount = sizeof(i2cResponse);
+  uint8_t byteCount = sizeof(registers);
 
   if (startIndex < byteCount) {
     
     // Copy to byte Buffer
     byte buf[byteCount];
-    memcpy(&buf, &i2cResponse, byteCount);
+    memcpy(&buf, &registers, byteCount);
 
     byte shift = i2cRecBuffer[0];  // Startindex
     byte temp[byteCount-shift];

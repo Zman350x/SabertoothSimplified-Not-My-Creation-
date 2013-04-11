@@ -24,7 +24,11 @@ struct {
   uint16_t c2;        // 0x03 & 0x04
   uint16_t c3;        // 0x05 & 0x06
   uint16_t c4;        // 0x07 & 0x08
-} i2cResponse;
+  uint16_t c5;        // 0x09 & 0x0A
+  uint16_t c6;        // 0x0B & 0x0C
+  int8_t drive;       // 0x0D
+  int8_t turn;        // 0x0E
+} registers;
 
 void setup()
 {
