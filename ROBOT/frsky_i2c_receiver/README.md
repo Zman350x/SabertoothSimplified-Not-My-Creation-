@@ -89,19 +89,19 @@ Software
     <td rowspan="2"><strong>reserved</strong><br />always 0</td>
   </tr>
   <tr>
-    <td>0x10</td>
+    <td>0x0A</td>
     <td align="center">R*</td>
     <td>C5 (LSB)</td>
   </tr>
   
   <tr>
-    <td>0x11</td>
+    <td>0x0B</td>
     <td align="center">R*</td>
     <td>C6 (MSB)</td>
     <td rowspan="2"><strong>reserved</strong><br />always 0</td>
   </tr>
   <tr>
-    <td>0x12</td>
+    <td>0x0C</td>
     <td align="center">R*</td>
     <td>C6 (LSB)</td>
   </tr>
@@ -111,14 +111,14 @@ Software
     <td colspan="4"><strong>Output Values</strong></td>
   </tr>
   <tr>
-    <td>0x13</td>
+    <td>0x0D</td>
     <td align="center">R/W*</td>
     <td>DRIVE</td>
     <td rowspan="2">-127 - +127 (int8 signed)<br />
     Writeable if override set</td>
   </tr>
   <tr>
-    <td>0x14</td>
+    <td>0x0E</td>
     <td align="center">R/W*</td>
     <td>TURN</td>
   </tr>
@@ -127,19 +127,19 @@ Software
     <td colspan="4"><strong>Configuration</strong></td>
   </tr>
   <tr>
-    <td>0x15</td>
+    <td>0x0F</td>
     <td align="center">R/W</td>
     <td>CONFIG1</td>
     <td>Configuration for Override etc.</td>
   </tr>
   <tr>
-    <td>0x16</td>
+    <td>0x10</td>
     <td align="center">R/W</td>
     <td>CONFIG2</td>
     <td>Configuration for Override etc.</td>
   </tr>
   <tr>
-    <td>0x17</td>
+    <td>0x11</td>
     <td align="center">R/W</td>
     <td>RCMAPPING</td>
     <td>Mapping of RC input to Sabertooh</td>
@@ -169,8 +169,8 @@ Software
   <td>x</td>
   <td>x</td>
   <td>x</td>
-  <td>x</td>
-  <td><strong>OVER</strong></td>
+  <td><strong>SIGNAL</strong></td>
+  <td><strong>OVERRIDE</strong></td>
   <td><strong>DEBUG</strong></td>
   <td><strong>STATE</strong></td>
 </tr>
@@ -215,11 +215,11 @@ Software
 </table>
 No output of Sabertooth Commands in debugmode.
 
-###### OVER
+###### OVERRIDE
 Override of RC input
 <table class="table table-striped">
   <tr>
-    <th colspan="2">OVER</th>
+    <th colspan="2">OVERRIDE</th>
   </tr>
   <tr>
     <td><strong>BIT 2</strong></td>
@@ -234,7 +234,7 @@ Override of RC input
     <td>Override on</td>
   </tr>
 </table>
-#### 0x15 CONFIG1
+#### 0x0F CONFIG1
 <table class="table table-striped">
 <tr>
   <th colspan="8">Bits</th>
@@ -260,9 +260,9 @@ Override of RC input
   <td><strong>STATE</strong></td>
 </tr>
 </table>
-#### 0x16 CONFIG2
+#### 0x10 CONFIG2
 
-#### 0x17 RCMAPPING
+#### 0x11 RCMAPPING
 <table class="table table-striped">
 <tr>
   <th colspan="8">Bits</th>
@@ -278,105 +278,123 @@ Override of RC input
   <th>0</th>
 </tr>
 <tr>
-  <td>-</td>
-  <td>-</td>
-  <td colspan="3" align="center"><strong>TURN</strong></td>
-  <td colspan="3" align="center"><strong>DRIVE</strong></td>
+  <td colspan="4" align="center"><strong>TURN</strong></td>
+  <td colspan="4" align="center"><strong>DRIVE</strong></td>
 </tr>
 </table>
 
 <table class="table table-striped">
   <tr>
-    <th colspan="4">DRIVE</th>
+    <th colspan="5">DRIVE</th>
   </tr>
   <tr>
+    <td><strong>BIT 3</strong></td>
     <td><strong>BIT 2</strong></td>
     <td><strong>BIT 1</strong></td>
     <td><strong>BIT 0</strong></td>
     <td>Desc</td>
   </tr>
   <tr>
+    <td>F</td>
     <td>0</td>
     <td>0</td>
     <td>1</td>
     <td>Channel 1 (C1)</td>
   </tr>
   <tr>
+    <td>F</td>
     <td>0</td>
     <td>1</td>
     <td>0</td>
     <td>Channel 2 (C2)</td>
   </tr>
   <tr>
+    <td>F</td>
     <td>0</td>
     <td>1</td>
     <td>1</td>
     <td>Channel 3 (C3)</td>
   </tr>
   <tr>
+    <td>F</td>
     <td>1</td>
     <td>0</td>
     <td>0</td>
     <td>Channel 4 (C4)</td>
   </tr>
   <tr>
+    <td>F</td>
     <td>1</td>
     <td>0</td>
     <td>1</td>
     <td>Channel 5 (C5)*</td>
   </tr>
   <tr>
+    <td>F</td>
     <td>1</td>
     <td>1</td>
     <td>0</td>
     <td>Channel 6 (C6)*</td>
+  </tr>
+  <tr>
+    <td colspan="5"><strong>F</strong> reverse input</td>
   </tr>
 </table>
 
 <table class="table table-striped">
   <tr>
-    <th colspan="4">TURN</th>
+    <th colspan="5">TURN</th>
   </tr>
   <tr>
+    <td><strong>BIT 7</strong></td>
+    <td><strong>BIT 6</strong></td>
     <td><strong>BIT 5</strong></td>
     <td><strong>BIT 4</strong></td>
-    <td><strong>BIT 3</strong></td>
     <td>Desc</td>
   </tr>
   <tr>
+    <td>F</td>
     <td>0</td>
     <td>0</td>
     <td>1</td>
     <td>Channel 1 (C1)</td>
   </tr>
   <tr>
+    <td>F</td>
     <td>0</td>
     <td>1</td>
     <td>0</td>
     <td>Channel 2 (C2)</td>
   </tr>
   <tr>
+    <td>F</td>
     <td>0</td>
     <td>1</td>
     <td>1</td>
     <td>Channel 3 (C3)</td>
   </tr>
   <tr>
+    <td>F</td>
     <td>1</td>
     <td>0</td>
     <td>0</td>
     <td>Channel 4 (C4)</td>
   </tr>
   <tr>
+    <td>F</td>
     <td>1</td>
     <td>0</td>
     <td>1</td>
     <td>Channel 5 (C5)*</td>
   </tr>
   <tr>
+    <td>F</td>
     <td>1</td>
     <td>1</td>
     <td>0</td>
     <td>Channel 6 (C6)*</td>
+  </tr>
+  <tr>
+    <td colspan="5"><strong>F</strong> reverse input</td>
   </tr>
 </table>
