@@ -5,7 +5,7 @@
 
 #include <Sabertooth.h>
 
-Sabertooth ST(128);
+//Sabertooth ST(128);
 
 #define RCCHANNELS 4
 #define I2CADR 0x18
@@ -52,7 +52,7 @@ void setup()
   Wire.onRequest(i2cRequestEvent);
   Wire.onReceive(i2cReceiveEvent);
   Serial.begin(9600);  // start serial for output
-  ST.autobaud();
+  //ST.autobaud();
   //Serial.println("frsky_i2c_receiver");
 
   // start listening
