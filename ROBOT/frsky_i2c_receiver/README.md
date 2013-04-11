@@ -129,9 +129,22 @@ Software
   <tr>
     <td>0x15</td>
     <td align="center">R/W</td>
-    <td>CONFIG</td>
+    <td>CONFIG1</td>
     <td>Configuration for Override etc.</td>
-  </tr>    
+  </tr>
+  <tr>
+    <td>0x16</td>
+    <td align="center">R/W</td>
+    <td>CONFIG2</td>
+    <td>Configuration for Override etc.</td>
+  </tr>
+  <tr>
+    <td>0x17</td>
+    <td align="center">R/W</td>
+    <td>RCMAPPING</td>
+    <td>Mapping of RC input to Sabertooh</td>
+  </tr>
+  
  
 </table>
 
@@ -142,16 +155,228 @@ Software
   <th colspan="8">Bits</th>
 </tr>
 <tr>
-  <td>7</td>
-  <td>6</td>
-  <td>5</td>
-  <td>4</td>
-  <td>3</td>
-  <td>2</td>
-  <td>1</td>
-  <td>0</td>
+  <th>7</th>
+  <th>6</th>
+  <th>5</th>
+  <th>4</th>
+  <th>3</th>
+  <th>2</th>
+  <th>1</th>
+  <th>0</th>
 </tr>
-
+<tr>
+  <td>x</td>
+  <td>x</td>
+  <td>x</td>
+  <td>x</td>
+  <td>x</td>
+  <td><strong>OVER</strong></td>
+  <td><strong>DEBUG</strong></td>
+  <td><strong>STATE</strong></td>
+</tr>
 </table>
 
-#### 0x15 Configuration
+###### STATE
+<table class="table table-striped">
+  <tr>
+    <th colspan="2">STATE</th>
+  </tr>
+  <tr>
+    <td><strong>BIT 0</strong></td>
+    <td>Desc</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>INIT</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>RUNNING</td>
+  </tr>
+</table>
+
+###### DEBUG
+<table class="table table-striped">
+  <tr>
+    <th colspan="2">DEBUG</th>
+  </tr>
+  <tr>
+    <td><strong>BIT 1</strong></td>
+    <td>Desc</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>Debugmode off</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Debugmode on</td>
+  </tr>
+</table>
+No output of Sabertooth Commands in debugmode.
+
+###### OVER
+Override of RC input
+<table class="table table-striped">
+  <tr>
+    <th colspan="2">OVER</th>
+  </tr>
+  <tr>
+    <td><strong>BIT 2</strong></td>
+    <td>Desc</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>Override off</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Override on</td>
+  </tr>
+</table>
+#### 0x15 CONFIG1
+<table class="table table-striped">
+<tr>
+  <th colspan="8">Bits</th>
+</tr>
+<tr>
+  <th>7</th>
+  <th>6</th>
+  <th>5</th>
+  <th>4</th>
+  <th>3</th>
+  <th>2</th>
+  <th>1</th>
+  <th>0</th>
+</tr>
+<tr>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td><strong>DEBUG</strong></td>
+  <td><strong>STATE</strong></td>
+</tr>
+</table>
+#### 0x16 CONFIG2
+
+#### 0x17 RCMAPPING
+<table class="table table-striped">
+<tr>
+  <th colspan="8">Bits</th>
+</tr>
+<tr>
+  <th>7</th>
+  <th>6</th>
+  <th>5</th>
+  <th>4</th>
+  <th>3</th>
+  <th>2</th>
+  <th>1</th>
+  <th>0</th>
+</tr>
+<tr>
+  <td>-</td>
+  <td>-</td>
+  <td colspan="3" align="center"><strong>TURN</strong></td>
+  <td colspan="3" align="center"><strong>DRIVE</strong></td>
+</tr>
+</table>
+
+<table class="table table-striped">
+  <tr>
+    <th colspan="4">DRIVE</th>
+  </tr>
+  <tr>
+    <td><strong>BIT 2</strong></td>
+    <td><strong>BIT 1</strong></td>
+    <td><strong>BIT 0</strong></td>
+    <td>Desc</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>Channel 1 (C1)</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>Channel 2 (C2)</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>1</td>
+    <td>1</td>
+    <td>Channel 3 (C3)</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>Channel 4 (C4)</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>Channel 5 (C5)*</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>Channel 6 (C6)*</td>
+  </tr>
+</table>
+
+<table class="table table-striped">
+  <tr>
+    <th colspan="4">TURN</th>
+  </tr>
+  <tr>
+    <td><strong>BIT 5</strong></td>
+    <td><strong>BIT 4</strong></td>
+    <td><strong>BIT 3</strong></td>
+    <td>Desc</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>Channel 1 (C1)</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>Channel 2 (C2)</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>1</td>
+    <td>1</td>
+    <td>Channel 3 (C3)</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>Channel 4 (C4)</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>Channel 5 (C5)*</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>Channel 6 (C6)*</td>
+  </tr>
+</table>
