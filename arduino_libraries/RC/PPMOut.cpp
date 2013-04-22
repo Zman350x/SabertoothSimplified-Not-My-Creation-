@@ -144,7 +144,30 @@ void PPMOut::handleInterrupt()
 
 
 // Private functions
-
+void PPMOut::updateTimings()
+{
+    uint16_t* scratch = m_timings;
+    uint16_t pause = m_pauseLength;
+    // copy all pre-calculated timings
+    for (uint8_t i = 0; i < m_channelCount; ++i)
+    {
+        // set pulse length
+        *scratch = m_pulseLength;
+        ++scratch;
+        // set timing
+        *scratch = m_channelTimings[i] - m_pulseLength;
+        pause -= m_channelTimings[i];
+        ++scratch;
+    }
+    // set final pulse length
+    *scratch = m_pulseLength;
+    ++scratch;
+    // set pause length
+    *scratch = pause - m_pulseLength;
+    // update number of timings
+    m_timingCount = (m_channelCount + 1) * 2;
+}
+/*
 void PPMOut::updateTimings()
 {
 	uint16_t* scratch = m_timings;
@@ -171,6 +194,7 @@ void PPMOut::updateTimings()
 	// update number of timings
 	m_timingCount = (m_channelCount + 1) * 2;
 }
+*/
 
 
 void PPMOut::isr()
