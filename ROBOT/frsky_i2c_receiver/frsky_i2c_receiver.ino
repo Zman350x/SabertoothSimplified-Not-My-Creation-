@@ -5,11 +5,11 @@
 
 #include <Sabertooth.h>
 
-Sabertooth ST(128);
+//Sabertooth ST(128);
 
 #define RCCHANNELS 4
 #define I2CADR 0x18
-#define I2CMAX_IN_BYTES 3
+#define I2CMAX_IN_BYTES 5
 
 byte i2cRecBuffer[I2CMAX_IN_BYTES];
 boolean i2cReceive = false;
@@ -24,7 +24,11 @@ struct {
   uint16_t c2;        // 0x03 & 0x04
   uint16_t c3;        // 0x05 & 0x06
   uint16_t c4;        // 0x07 & 0x08
-} i2cResponse;
+  uint16_t c5;        // 0x09 & 0x0A
+  uint16_t c6;        // 0x0B & 0x0C
+  int8_t drive;       // 0x0D
+  int8_t turn;        // 0x0E
+} registers;
 
 void setup()
 {
@@ -52,7 +56,8 @@ void setup()
   Wire.onRequest(i2cRequestEvent);
   Wire.onReceive(i2cReceiveEvent);
   Serial.begin(9600);  // start serial for output
-  ST.autobaud();
+  Serial.println("frsky_i2c_receiver");
+  //ST.autobaud();
   //Serial.println("frsky_i2c_receiver");
 
   // start listening
@@ -64,6 +69,7 @@ void loop(){
   // update incoming values
   g_PPMIn.update();
   processRC();
+  bitSet(registers.stateregister, 0);
   
   if (i2cReceive) {
     i2cReceive = false;
