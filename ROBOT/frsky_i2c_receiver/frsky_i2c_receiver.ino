@@ -7,7 +7,7 @@
 
 //Sabertooth ST(128);
 
-#define RCCHANNELS 4
+#define RCCHANNELS 8
 #define I2CADR 0x18
 #define I2CMAX_IN_BYTES 5
 
@@ -26,8 +26,10 @@ struct {
   uint16_t c4;        // 0x07 & 0x08
   uint16_t c5;        // 0x09 & 0x0A
   uint16_t c6;        // 0x0B & 0x0C
-  int8_t drive;       // 0x0D
-  int8_t turn;        // 0x0E
+  uint16_t c7;        // 0x0D & 0x0E
+  uint16_t c8;        // 0x0F & 0x10
+  int8_t drive;       // 0x11
+  int8_t turn;        // 0x12
 } registers;
 
 void setup()

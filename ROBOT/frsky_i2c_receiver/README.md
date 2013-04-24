@@ -86,7 +86,8 @@ Software
     <td>0x09</td>
     <td align="center">R*</td>
     <td>C5 (MSB)</td>
-    <td rowspan="2"><strong>reserved</strong><br />always 0</td>
+    <td rowspan="2">PPM-Value, 1000-2000ms,<br />
+    1500 center</td>
   </tr>
   <tr>
     <td>0x0A</td>
@@ -98,27 +99,53 @@ Software
     <td>0x0B</td>
     <td align="center">R*</td>
     <td>C6 (MSB)</td>
-    <td rowspan="2"><strong>reserved</strong><br />always 0</td>
+    <td rowspan="2">PPM-Value, 1000-2000ms,<br />
+    1500 center</td>
   </tr>
   <tr>
     <td>0x0C</td>
     <td align="center">R*</td>
     <td>C6 (LSB)</td>
   </tr>
-  
+
+  <tr>
+    <td>0x0D</td>
+    <td align="center">R*</td>
+    <td>C7 (MSB)</td>
+    <td rowspan="2">PPM-Value, 1000-2000ms,<br />
+    1500 center</td>
+  </tr>
+  <tr>
+    <td>0x0E</td>
+    <td align="center">R*</td>
+    <td>C7 (LSB)</td>
+  </tr>
+
+  <tr>
+    <td>0x0F</td>
+    <td align="center">R*</td>
+    <td>C8 (MSB)</td>
+    <td rowspan="2">PPM-Value, 1000-2000ms,<br />
+    1500 center</td>
+  </tr>
+  <tr>
+    <td>0x10</td>
+    <td align="center">R*</td>
+    <td>C8 (LSB)</td>
+  </tr>
   
   <tr>
     <td colspan="4"><strong>Output Values</strong></td>
   </tr>
   <tr>
-    <td>0x0D</td>
+    <td>0x11</td>
     <td align="center">R/W*</td>
     <td>DRIVE</td>
     <td rowspan="2">-127 - +127 (int8 signed)<br />
     Writeable if override set</td>
   </tr>
   <tr>
-    <td>0x0E</td>
+    <td>0x12</td>
     <td align="center">R/W*</td>
     <td>TURN</td>
   </tr>
@@ -127,19 +154,19 @@ Software
     <td colspan="4"><strong>Configuration</strong></td>
   </tr>
   <tr>
-    <td>0x0F</td>
+    <td>0x13</td>
     <td align="center">R/W</td>
     <td>CONFIG1</td>
     <td>Configuration for Override etc.</td>
   </tr>
   <tr>
-    <td>0x10</td>
+    <td>0x14</td>
     <td align="center">R/W</td>
     <td>CONFIG2</td>
     <td>Configuration for Override etc.</td>
   </tr>
   <tr>
-    <td>0x11</td>
+    <td>0x15</td>
     <td align="center">R/W</td>
     <td>RCMAPPING</td>
     <td>Mapping of RC input to Sabertooh</td>
@@ -234,7 +261,7 @@ Override of RC input
     <td>Override on</td>
   </tr>
 </table>
-#### 0x0F CONFIG1
+#### 0x13 CONFIG1
 <table class="table table-striped">
 <tr>
   <th colspan="8">Bits</th>
@@ -260,9 +287,9 @@ Override of RC input
   <td><strong>STATE</strong></td>
 </tr>
 </table>
-#### 0x10 CONFIG2
+#### 0x14 CONFIG2
 
-#### 0x11 RCMAPPING
+#### 0x15 RCMAPPING
 <table class="table table-striped">
 <tr>
   <th colspan="8">Bits</th>
