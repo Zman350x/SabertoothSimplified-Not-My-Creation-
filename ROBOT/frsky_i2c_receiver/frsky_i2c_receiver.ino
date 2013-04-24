@@ -56,6 +56,7 @@ void setup()
   Wire.onRequest(i2cRequestEvent);
   Wire.onReceive(i2cReceiveEvent);
   Serial.begin(9600);  // start serial for output
+  Serial.println("frsky_i2c_receiver");
   //ST.autobaud();
   //Serial.println("frsky_i2c_receiver");
 
