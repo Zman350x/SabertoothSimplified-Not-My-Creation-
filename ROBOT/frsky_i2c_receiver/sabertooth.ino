@@ -24,8 +24,6 @@ void processSabertooth() {
 
   if (!MOTORSTOP) {
     switchExpo();
-    //Serial.println(i2c_dataset.c1);
-    
     
     int16_t drive_in = constrain(i2c_dataset.c2, MIN_INPUT, MAX_INPUT);
     int16_t turn_in = constrain(i2c_dataset.c1, MIN_INPUT, MAX_INPUT);
@@ -39,7 +37,6 @@ void processSabertooth() {
     ST_turn = i2c_dataset.turn;
     ST_drive = i2c_dataset.drive; 
   } else {
-    Serial.println("MOTORSTOP");
     ST_turn = 0;
     ST_drive = 0;
   }

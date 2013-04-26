@@ -31,8 +31,6 @@ void processRC() {
     */
     // do magic, incoming values available in g_values in microseconds.
   } else if (g_PPMIn.isLost()) {
-        Serial.println("isLost");
-
     i2c_dataset.stateregister.signal = 0;
     MOTORSTOP = true;
     // signal has been lost (no new valid frames for 'timeout' milliseconds)
