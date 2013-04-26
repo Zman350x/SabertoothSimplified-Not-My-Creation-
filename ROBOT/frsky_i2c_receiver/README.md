@@ -156,21 +156,22 @@ Software
   <tr>
     <td>0x13</td>
     <td align="center">R/W</td>
-    <td>CONFIG1</td>
-    <td>Configuration for Override etc.</td>
+    <td>RCMAPPING</td>
+    <td>Mapping of RC input to Sabertooh</td>
   </tr>
   <tr>
     <td>0x14</td>
     <td align="center">R/W</td>
-    <td>CONFIG2</td>
+    <td>CONFIG1</td>
     <td>Configuration for Override etc.</td>
   </tr>
   <tr>
     <td>0x15</td>
     <td align="center">R/W</td>
-    <td>RCMAPPING</td>
-    <td>Mapping of RC input to Sabertooh</td>
+    <td>CONFIG2</td>
+    <td>Configuration for Override etc.</td>
   </tr>
+
   
  
 </table>
@@ -261,35 +262,8 @@ Override of RC input
     <td>Override on</td>
   </tr>
 </table>
-#### 0x13 CONFIG1
-<table class="table table-striped">
-<tr>
-  <th colspan="8">Bits</th>
-</tr>
-<tr>
-  <th>7</th>
-  <th>6</th>
-  <th>5</th>
-  <th>4</th>
-  <th>3</th>
-  <th>2</th>
-  <th>1</th>
-  <th>0</th>
-</tr>
-<tr>
-  <td>-</td>
-  <td>-</td>
-  <td>-</td>
-  <td>-</td>
-  <td>-</td>
-  <td>-</td>
-  <td><strong>DEBUG</strong></td>
-  <td><strong>STATE</strong></td>
-</tr>
-</table>
-#### 0x14 CONFIG2
 
-#### 0x15 RCMAPPING
+#### 0x13 RCMAPPING
 <table class="table table-striped">
 <tr>
   <th colspan="8">Bits</th>
@@ -325,43 +299,66 @@ Override of RC input
     <td>F</td>
     <td>0</td>
     <td>0</td>
-    <td>1</td>
+    <td>0</td>
     <td>Channel 1 (C1)</td>
   </tr>
   <tr>
     <td>F</td>
     <td>0</td>
-    <td>1</td>
     <td>0</td>
+    <td>1</td>
     <td>Channel 2 (C2)</td>
   </tr>
   <tr>
     <td>F</td>
     <td>0</td>
     <td>1</td>
-    <td>1</td>
+    <td>0</td>
     <td>Channel 3 (C3)</td>
   </tr>
   <tr>
     <td>F</td>
+    <td>0</td>
     <td>1</td>
-    <td>0</td>
-    <td>0</td>
+    <td>1</td>
     <td>Channel 4 (C4)</td>
   </tr>
   <tr>
     <td>F</td>
     <td>1</td>
     <td>0</td>
+    <td>0</td>
+    <td>Channel 5 (C5)</td>
+  </tr>
+  <tr>
+    <td>F</td>
     <td>1</td>
-    <td>Channel 5 (C5)*</td>
+    <td>0</td>
+    <td>1</td>
+    <td>Channel 6 (C6)</td>
   </tr>
   <tr>
     <td>F</td>
     <td>1</td>
     <td>1</td>
     <td>0</td>
-    <td>Channel 6 (C6)*</td>
+    <td>Channel 7 (C7)</td>
+  </tr>  <tr>
+    <td>F</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+    <td>Channel 8 (C8)</td>
+  </tr>
+  <tr>
+    <td colspan="5"><strong>Default</strong></td>
+  </tr>
+  <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>CH1 / NO REV</td>
   </tr>
   <tr>
     <td colspan="5"><strong>F</strong> reverse input</td>
@@ -383,45 +380,96 @@ Override of RC input
     <td>F</td>
     <td>0</td>
     <td>0</td>
-    <td>1</td>
+    <td>0</td>
     <td>Channel 1 (C1)</td>
   </tr>
   <tr>
     <td>F</td>
     <td>0</td>
-    <td>1</td>
     <td>0</td>
+    <td>1</td>
     <td>Channel 2 (C2)</td>
   </tr>
   <tr>
     <td>F</td>
     <td>0</td>
     <td>1</td>
-    <td>1</td>
+    <td>0</td>
     <td>Channel 3 (C3)</td>
   </tr>
   <tr>
     <td>F</td>
+    <td>0</td>
     <td>1</td>
-    <td>0</td>
-    <td>0</td>
+    <td>1</td>
     <td>Channel 4 (C4)</td>
   </tr>
   <tr>
     <td>F</td>
     <td>1</td>
     <td>0</td>
+    <td>0</td>
+    <td>Channel 5 (C5)</td>
+  </tr>
+  <tr>
+    <td>F</td>
     <td>1</td>
-    <td>Channel 5 (C5)*</td>
+    <td>0</td>
+    <td>1</td>
+    <td>Channel 6 (C6)</td>
   </tr>
   <tr>
     <td>F</td>
     <td>1</td>
     <td>1</td>
     <td>0</td>
-    <td>Channel 6 (C6)*</td>
+    <td>Channel 7 (C7)</td>
+  </tr>  <tr>
+    <td>F</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+    <td>Channel 8 (C8)</td>
+  </tr>
+  <tr>
+    <td colspan="5"><strong>Default</strong></td>
+  </tr>
+  <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>CH2 / NO REV</td>
   </tr>
   <tr>
     <td colspan="5"><strong>F</strong> reverse input</td>
   </tr>
 </table>
+#### 0x14 CONFIG1
+<table class="table table-striped">
+<tr>
+  <th colspan="8">Bits</th>
+</tr>
+<tr>
+  <th>7</th>
+  <th>6</th>
+  <th>5</th>
+  <th>4</th>
+  <th>3</th>
+  <th>2</th>
+  <th>1</th>
+  <th>0</th>
+</tr>
+<tr>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td><strong>DEBUG</strong></td>
+  <td><strong>STATE</strong></td>
+</tr>
+</table>
+#### 0x15 CONFIG2
+
