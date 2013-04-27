@@ -1,5 +1,11 @@
+static uint8_t currentdebugmenu = 0;
+
 void processInput() {
-  if (inputString == "+++\n") {
+  if (DEBUGMODE) {
+    if(inputString == "-\n") {
+        Serial.println("BACK");
+    }
+  } else if (inputString == "+++\n") {
     Serial.println("--- frsky_i2c_receiver");
     Serial.println("DEBUG ON");
     DEBUGMODE = true;
