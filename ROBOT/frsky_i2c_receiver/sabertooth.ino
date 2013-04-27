@@ -25,7 +25,8 @@ void setupSabertooth() {
   ST_drive = 0;
 
   ST.autobaud();
-  ST.setDeadband(3);
+  delay(1000);
+  ST.setDeadband(4);
   
 }
 
