@@ -84,7 +84,7 @@ void setup()
   setupSabertooth();
   // set a timeout (default 500 milliseconds)
   g_PPMIn.setTimeout(500);
-  //g_PPMIn.setPauseLength(8000); // 8000 norm
+  g_PPMIn.setPauseLength(3000); // 4000 norm
   // start listening
   g_PPMIn.start();
 
