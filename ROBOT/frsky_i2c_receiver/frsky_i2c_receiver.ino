@@ -4,6 +4,7 @@
 #include <Timer1.h>
 #include <Curve.h>
 #include <Expo.h>
+#include <DualRates.h>
 
 #include <Sabertooth.h>
 
