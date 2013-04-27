@@ -9,7 +9,7 @@ void processRC() {
     i2c_dataset.c4 = g_values[3];
     i2c_dataset.c5 = g_values[4];
     i2c_dataset.c6 = g_values[5];
-    i2c_dataset.c7 = g_values[6];
+    //i2c_dataset.c7 = g_values[6];
     //i2c_dataset.c8 = g_values[7];
     /*
     Serial.print(g_values[0]);

@@ -10,7 +10,7 @@
 
 Sabertooth ST(128);
 
-#define RCCHANNELS 7
+#define RCCHANNELS 6
 #define I2CADR 0x18
 #define I2CMAX_IN_BYTES 5
 
