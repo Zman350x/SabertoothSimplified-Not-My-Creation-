@@ -1,11 +1,16 @@
 <?xml version='1.0'?>
 <mavlink>
-     <include>common.xml</include>
-     <messages>
-      <message id="150" name="FLEXIFUNCTION_SET">
-      <description>Depreciated but used as a compiler flag.  Do not remove</description>
-      <field type="uint8_t" name="target_system">System ID</field>
-      <field type="uint8_t" name="target_component">Component ID</field>
+  <include>common.xml</include>
+  <messages>
+    <message id="150" name="DHT11_DATA">
+      <description>DHT11 Sensor Values</description>
+      <field type="uint8_t" name="temperature_celsius">Temperatur (Celsius)</field>
+      <field type="uint8_t" name="humidity_percent">Humidity (Percent)</field>
     </message>
-     </messages>
+    <message id="151" name="SABERTOOTH">
+      <description>Sabertooth Motorcontroller</description>
+      <field type="int8_t" name="drive">Drive</field>
+      <field type="int8_t" name="turn">Turn</field>
+    </message>
+  </messages>
 </mavlink>
