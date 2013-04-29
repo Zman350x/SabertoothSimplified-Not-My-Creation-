@@ -1,19 +1,15 @@
 10
 
 dir
-531
-http://arducam-osd.googlecode.com/svn/trunk/libraries/FastSerial/examples/FastSerial
-http://arducam-osd.googlecode.com/svn
+1310
+http://arducopter.googlecode.com/svn/trunk/libraries/FastSerial/examples/FastSerial
+http://arducopter.googlecode.com/svn
 
 
 
-2012-05-31T19:07:52.276585Z
-421
-sbenigno@gmail.com
-
-
-
-
+2010-11-25T02:59:15.997572Z
+919
+DrZiplok@gmail.com
 
 
 
@@ -24,7 +20,11 @@ sbenigno@gmail.com
 
 
 
-76a04b01-182f-8694-69c2-453913dba56d
+
+
+
+
+f9c3cf11-9bcb-44bc-f272-b75c42450872
 
 FastSerial.pde
 file
@@ -32,11 +32,12 @@ file
 
 
 
-2012-12-19T18:57:22.000000Z
-6e3a9ae55f52be3fbaa4566992036bc3
-2012-05-31T19:07:52.276585Z
-421
-sbenigno@gmail.com
+2010-11-28T15:20:25.796875Z
+1e0a863e47af77cc12e6a65775b790cd
+2010-11-25T02:59:15.997572Z
+919
+DrZiplok@gmail.com
+has-props
 
 
 
@@ -57,40 +58,5 @@ sbenigno@gmail.com
 
 
 
-
-1695
-
-Makefile
-file
-
-
-
-
-2012-12-19T18:57:22.000000Z
-c30d1b2f9ae391751528ce59eaa4f9d1
-2012-05-31T19:07:52.276585Z
-421
-sbenigno@gmail.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-53
+1660
 
