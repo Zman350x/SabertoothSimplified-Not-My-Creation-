@@ -47,7 +47,7 @@ void processSabertooth() {
     //normalized_turn = turn_expo.apply(normalized_turn);
     
     int16_t rated_turn = turn_drates[turn_drate_switch].apply(normalized_turn);
-    
+    /*
     if (DEBUGMODE) {
       Serial.print(i2c_dataset.c6);
       Serial.print("=");
@@ -57,7 +57,7 @@ void processSabertooth() {
       Serial.print(" > ");
       Serial.println(rated_turn);
     }
-    
+    */
     i2c_dataset.drive = map(normalized_drive, -256, 256, -127, 127);
     i2c_dataset.turn = map(rated_turn, -256, 256, -127, 127);
     ST_turn = i2c_dataset.turn;

@@ -19,6 +19,7 @@ static uint8_t         new_command;                        //new command receive
 
 static boolean MOTORSTOP = true;
 static boolean DEBUGMODE = false;
+static uint8_t DEBUGMENUPAGE = 0;
 
 uint16_t g_values[RCCHANNELS];                  // output buffer for PPMIn
 uint8_t  g_workIn[PPMIN_WORK_SIZE(RCCHANNELS)]; // we need to have a work buffer for the PPMIn class
