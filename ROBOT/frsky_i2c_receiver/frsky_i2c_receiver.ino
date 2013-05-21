@@ -97,9 +97,12 @@ void setup()
       ptr++;
   }
 
+  i2c_dataset.rcmapping.drive_chan = 0x00; // Drive Channel=1
+  i2c_dataset.rcmapping.drive_reverse = 0x00; // No reverse
   i2c_dataset.rcmapping.turn_chan = 0x01; // Turn Channel=2
+  i2c_dataset.rcmapping.turn_reverse = 0x00; // No reverse
   i2c_dataset.stateregister.state = 0;
-
+  
   // START I2C
   Wire.begin(I2CADR);        // join i2c bus (address optional for master)
   //TWBR = 12;
