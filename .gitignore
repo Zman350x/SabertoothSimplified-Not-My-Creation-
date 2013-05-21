@@ -1,2 +1,4 @@
 BASESTATION/mavlink/gardenbot/gardenbot
 BASESTATION/mavlink/gardenbot
+BASESTATION/NODEJS/node_modules/mavlink_common_v1.0/node_modules/.bin
+BASESTATION/NODEJS/node_modules/mavlink_common_v1.0/node_modules/mocha/node_modules/.bin
