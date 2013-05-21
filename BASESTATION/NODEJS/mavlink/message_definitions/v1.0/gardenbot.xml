@@ -1,0 +1,22 @@
+<?xml version='1.0'?>
+<mavlink>
+  <include>common.xml</include>
+  <messages>
+    <message id="150" name="DHT11_DATA">
+      <description>DHT11 Sensor Values</description>
+      <field type="uint8_t" name="temperature_celsius">Temperatur (Celsius)</field>
+      <field type="uint8_t" name="humidity_percent">Humidity (Percent)</field>
+    </message>
+    <message id="151" name="SABERTOOTH">
+      <description>Sabertooth Motorcontroller</description>
+      <field type="int8_t" name="drive">Drive</field>
+      <field type="int8_t" name="turn">Turn</field>
+    </message>
+    <message id="152" name="VOLTAGECURRENT">
+      <description>Voltage, Current</description>
+      <field type="int16_t" name="voltage">Voltage</field>
+      <field type="int16_t" name="cur_left">Current Left</field>
+      <field type="int16_t" name="cur_right">Current Right</field>
+    </message>
+  </messages>
+</mavlink>
