@@ -1,7 +1,7 @@
 var serialport = require("serialport");
 var SerialPort = serialport.SerialPort; // localize object constructor
 
-var mavlink = require('mavlink_common_v1.0');
+var mavlink = require('./lib/mavlink_common_v1.0');
 var mavlinkParser = new MAVLink();
 
 

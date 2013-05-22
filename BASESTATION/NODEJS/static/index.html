@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  
+  <head>
+    <title>Mavlink</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-responsive.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/underscore-min.js"></script>
+    <script src="/js/backbone-min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/tween.js"></script>
+    <script src="/js/steelseries.js"></script>
+    <script src="/app/views/HeaderBar.js"></script>
+    <script src="/app/views/DashboardView.js"></script>
+    <script src="/app/views/MapView.js"></script>
+    <script src="/app/utils.js"></script>
+    <script src="/app/main.js"></script>
+    <script>
+      var socket = io.connect('http://localhost');
+      socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+      });
+
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+            <a class="brand" href="#">GARDENBOT</a>
+            <div class="nav-collapse collapse">
+              <ul id="mainmenu" class="nav">
+                <li class="menu-dashboard">
+                  <a href="#" class="active">Dash</a> 
+                </li>
+                <li class="menu-map">
+                  <a href="#map">Map</a> 
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content" class="container">
+        
+      </div>
+    </div>
+    <div class="row"></div>
+  </body>
+
+</html>
+
