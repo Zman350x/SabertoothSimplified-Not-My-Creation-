@@ -1,3 +1,4 @@
 BASESTATION/mavlink/gardenbot/gardenbot
 BASESTATION/mavlink/gardenbot
 BASESTATION/NODEJS/node_modules
+BASESTATION/NODEJS/lib/mavlink_common_v1.0/node_modules
