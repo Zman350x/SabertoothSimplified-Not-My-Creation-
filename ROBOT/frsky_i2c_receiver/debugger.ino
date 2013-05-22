@@ -12,6 +12,30 @@ void processInput() {
       if (inputString == "1\n"){
         debugRcInput();
       }
+    } else if (DEBUGMENUPAGE == 1) {
+      String input = String(inputString);
+      if (input.startsWith("turn")) {
+        uint8_t chan = (int)input.charAt(5)-48;
+        uint8_t reverse = (int)input.charAt(7)-48;
+
+        if (reverse != 0 && reverse != 1) {
+          reverse = 0;
+        }
+        
+        if (chan >= 1 && chan <= 8) {
+          Serial.print(F(" >>> "));
+          Serial.print(F("Setting turn to Channel "));
+          Serial.print(chan);
+          if (reverse == 1) Serial.print(F(" - reversed"));
+          Serial.println(F(" >>> "));
+          i2c_dataset.rcmapping.turn_chan = (chan-1);
+          i2c_dataset.rcmapping.turn_reverse = reverse;
+          debugRcInput();
+        }
+        
+      } else if(input.startsWith("drive")) {
+        Serial.println(input);
+      }
     }
   } else if (inputString == "+++\n") {
     debugMenuMain();
@@ -64,6 +88,7 @@ void debugRcInput() {
     Serial.println(F("  1"));
 
   Serial.println();
+  Serial.println(F(" Change turn to channel 3 and reverse: turn 3 1 <enter>"));
   Serial.println(F(" - = back / exit = Debugmode off"));
   Serial.println();
   Serial.println(F("--------------------------------------------------------------"));  
