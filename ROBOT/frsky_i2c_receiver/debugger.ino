@@ -37,8 +37,32 @@ void debugRcInput() {
   Serial.println(F("--------------------------------------------------------------"));
   Serial.println(F(" RC INPUT "));
   Serial.println(F("--------------------------------------------------------------"));
-  Serial.println();
-  Serial.println();
+  Serial.println(F("               CHANNEL"));
+  Serial.println(F("           1 2 3 4 5 6 7 8  REV"));
+  Serial.print(  F(" drive :   "));
+  for(uint8_t x = 0; x<8; x++) {
+    if (i2c_dataset.rcmapping.drive_chan == x)
+      Serial.print(F("X "));
+    else
+      Serial.print(F("  "));
+  }
+  if (i2c_dataset.rcmapping.drive_reverse == 0x00)
+    Serial.println(F("  0"));
+  else
+    Serial.println(F("  1"));
+
+  Serial.print(  F(" turn  :   "));
+  for(uint8_t x = 0; x<8; x++) {
+    if (i2c_dataset.rcmapping.turn_chan == x)
+      Serial.print(F("X "));
+    else
+      Serial.print(F("  "));
+  }
+  if (i2c_dataset.rcmapping.turn_reverse == 0x00)
+    Serial.println(F("  0"));
+  else
+    Serial.println(F("  1"));
+
   Serial.println();
   Serial.println(F(" - = back / exit = Debugmode off"));
   Serial.println();
