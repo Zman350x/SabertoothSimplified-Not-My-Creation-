@@ -1,0 +1,12 @@
+{
+  "name": "Gardenbot",
+  "version": "0.0.1",
+  "dependencies": {
+    "serialport": "~1.1.0",
+    "express": "~3.2.4"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
