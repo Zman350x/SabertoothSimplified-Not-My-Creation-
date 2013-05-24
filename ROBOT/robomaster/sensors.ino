@@ -20,18 +20,80 @@ int hum2[3];
 float bat_voltage_store = 0;
 
 float readBatVoltage() {
-  int InternalVcc = readVccArduinoMega();
+  long InternalVcc = readVccArduinoMega();
 
-  int sensorValue = analogRead(VOLT_SENS_PORT);
+  double sensorValue = analogRead(VOLT_SENS_PORT);
   double SensedVoltageV  = ((sensorValue * InternalVcc) / 1024 /1000)-0.21;
   double SensedVoltageMv  = ((sensorValue * InternalVcc) / 1024)-210;
   //Serial.println(((sensorValue * InternalVcc) / 1024));
-  float calculatedVoltage = SensedVoltageMv * 6.13 / 1000;
+  float calculatedVoltage = SensedVoltageMv * VOLT_SENS_MULTIPLIKATOR / 1000;
   bat_voltage_store = ((bat_voltage_store*9) + calculatedVoltage)/10;
   //Serial.println(calculatedVoltage);
-  BAT_Volt.voltage = (int)bat_voltage_store*100;
+  BAT_VoltCur.voltage = bat_voltage_store*100;
+  /*
+  Serial.print("VCC: ");
+  Serial.print(InternalVcc);
+  Serial.print(" - sensor = " );                       
+  Serial.print(sensorValue);
+  Serial.print(" - mv:");
+  Serial.print(SensedVoltageMv);
+  Serial.print(" - V:");
+  Serial.print(SensedVoltageV);
+  Serial.print(" - ");
+  Serial.print(bat_voltage_store);
+  Serial.println();
+  */
   return bat_voltage_store;
 }
+
+double cur_left_store = 0.0;
+double cur_right_store = 0.0;
+
+void readCurrent() {
+  double cur_left = currentSensor(analogRead(CUR_SENS_LEFT_PIN));
+  double cur_right = currentSensor(analogRead(CUR_SENS_RIGHT_PIN));
+  if (cur_left < 0)
+    cur_left = cur_left *-1.0;
+  if (cur_right < 0)
+    cur_right = cur_right *-1.0;
+  cur_left_store = ((cur_left_store*9)+cur_left)/10;
+  cur_right_store = ((cur_right_store*9)+cur_right)/10;
+/*
+  Serial.print("L:");
+  Serial.print(cur_left_store);
+  Serial.print(" R:");
+  Serial.println(cur_right_store);
+*/  
+  BAT_VoltCur.cur_left  = cur_left_store * 100;
+  BAT_VoltCur.cur_right = cur_right_store * 100;
+}
+
+static double currentSensor(int RawADC) {
+
+  int    Sensitivity    = 66; // mV/A
+
+  long   InternalVcc    = readVccArduinoMega();
+  double ZeroCurrentVcc = InternalVcc / 2;
+  double SensedVoltage  = (RawADC * InternalVcc) / 1024;
+  double Difference     = SensedVoltage - ZeroCurrentVcc;
+  double SensedCurrent  = Difference / Sensitivity;
+  /*
+  Serial.print("ADC: ");
+  Serial.print(RawADC);
+  Serial.print("/1024");
+
+  Serial.print(", Sensed Voltage: ");
+  printDouble(SensedVoltage, 1);
+  Serial.print("mV");
+
+  Serial.print(", 0A at: ");
+  printDouble(ZeroCurrentVcc, 1);
+  Serial.print("mV, ");
+  */
+  return SensedCurrent;                                        // Return the Current
+
+} 
+
 
 void readDHT() {
   unsigned long dht11delay_currentMillis = millis();
@@ -83,7 +145,7 @@ void readDHT() {
 
     DHT_Vals.temp = dht11_dat[2];
     DHT_Vals.hum = dht11_dat[0];
-    /*
+    
     temp1[0]=dht11_dat[2];
     temp2[0]=dht11_dat[3];
     Serial.print("Temperature: ");
@@ -99,7 +161,7 @@ void readDHT() {
     Serial.print(".");
     Serial.print(hum2[0]);
     Serial.println("%");
-    */
+    
   }
 }
 

@@ -13,10 +13,12 @@ typedef struct {
 
 typedef struct {
   uint16_t voltage;
-} BAT_VOLTAGE;
+  uint16_t cur_left;
+  uint16_t cur_right;
+} VOLTAGECURRENT;
 
 static DHT_VALUES DHT_Vals;
-static BAT_VOLTAGE BAT_Volt;
+static VOLTAGECURRENT BAT_VoltCur;
 
 void setup() {
   Serial.begin(DEBUG_BAUD);
@@ -134,6 +136,7 @@ void medium_loop() {
   }
   readDHT();
   readBatVoltage();
+  readCurrent();
 }
 
 
@@ -162,15 +165,14 @@ static void slow_loop() {
 void one_second_loop() {
         mavlink_run();
 
-  Serial.print("Load: ");
-  Serial.print(load);
-  Serial.print(" - Temp:");
-  Serial.print(DHT_Vals.temp);
-  Serial.print(" - Hum:");
-  Serial.print(DHT_Vals.hum);
-  Serial.print(" - Volt:");
-  Serial.print(BAT_Volt.voltage);
-  Serial.println();
+    mavlink_message_t msg2;
+  mavlink_msg_dht11_data_pack(20, 20, &msg2, DHT_Vals.temp, DHT_Vals.hum);
+  send_mav_message(&msg2);
+
+    mavlink_message_t msg3;
+  mavlink_msg_voltagecurrent_pack(20, 20, &msg3, BAT_VoltCur.voltage, BAT_VoltCur.cur_left, BAT_VoltCur.cur_right);
+  send_mav_message(&msg3);
+
 }
 
 static void resetPerfData(void) {

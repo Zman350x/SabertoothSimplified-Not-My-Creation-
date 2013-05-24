@@ -7,6 +7,11 @@
 #define VOLT_SENS_PORT A1
 #define VOLT_SENS_MULTIPLIKATOR 6.13
 
+// Cureetn sensor
+#define CUR_SENS_LEFT_PIN A3
+#define CUR_SENS_RIGHT_PIN A2
+
 // DHT11 SENSOR
-#define DHT11_PIN PE5
+//#define DHT11_PIN PE5 // Digital 3 (KILLED BY OVERVOLTAGE DOH)
+#define DHT11_PIN PE3 // Digital 5
 #define DHT_READ_INTERVAL 500

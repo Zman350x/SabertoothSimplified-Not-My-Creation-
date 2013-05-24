@@ -34,6 +34,7 @@ void mavlink_receive() {
     // Try to get a new message
     if(mavlink_parse_char(MAVLINK_COMM_0, c, &msg, &status)) {
       // Handle message
+      Serial.println(msg.msgid);
       switch(msg.msgid) {
         case MAVLINK_MSG_ID_HEARTBEAT: {
           // E.g. read GCS heartbeat and go into
