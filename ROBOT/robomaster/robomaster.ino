@@ -19,7 +19,7 @@ static DHT_VALUES DHT_Vals;
 static BAT_VOLTAGE BAT_Volt;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(DEBUG_BAUD);
   Serial3.begin(TELPORT_BAUD);
   Serial.println("DHTxx test!");
   initSensors();
