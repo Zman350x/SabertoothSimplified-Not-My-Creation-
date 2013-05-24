@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/bootstrap-responsive.css">
+    <!--<link rel="stylesheet" href="/css/bootstrap-responsive.css">-->
+    <link rel="stylesheet" href="/css/style.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/underscore-min.js"></script>
@@ -14,19 +15,12 @@
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/tween.js"></script>
     <script src="/js/steelseries.js"></script>
+    <script src="/app/views/GaugeComponent.js"></script>
     <script src="/app/views/HeaderBar.js"></script>
     <script src="/app/views/DashboardView.js"></script>
     <script src="/app/views/MapView.js"></script>
     <script src="/app/utils.js"></script>
     <script src="/app/main.js"></script>
-    <script>
-      var socket = io.connect('http://localhost');
-      socket.on('news', function (data) {
-        console.log(data);
-        socket.emit('my other event', { my: 'data' });
-      });
-
-    </script>
   </head>
   <body>
     <div class="container">
@@ -53,7 +47,7 @@
         </div>
       </div>
       <div id="content" class="container">
-        
+
       </div>
     </div>
     <div class="row"></div>
