@@ -168,6 +168,7 @@ void medium_loop() {
       // Send Voltage & Current
       send_mav_voltage_current();
       send_mav_rc_values();
+      send_mav_sabertooth();
     break;
 
     // This case controls the slow loop

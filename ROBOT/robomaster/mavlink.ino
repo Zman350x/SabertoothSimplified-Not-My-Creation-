@@ -84,3 +84,10 @@ void send_mav_rc_values() {
   255);
   send_mav_message(&msg);
 }
+
+void send_mav_sabertooth() {
+  mavlink_message_t msg;
+
+  mavlink_msg_sabertooth_pack(20, 30, &msg, rc_i2c_dataset.drive, rc_i2c_dataset.turn);
+  send_mav_message(&msg);
+}
