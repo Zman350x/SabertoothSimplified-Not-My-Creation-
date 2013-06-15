@@ -58,12 +58,12 @@ void readCurrent() {
     cur_right = cur_right *-1.0;
   cur_left_store = ((cur_left_store*9)+cur_left)/10;
   cur_right_store = ((cur_right_store*9)+cur_right)/10;
-/*
+#ifdef DEBUG_SENSOR_CURRENT
   Serial.print("L:");
   Serial.print(cur_left_store);
   Serial.print(" R:");
   Serial.println(cur_right_store);
-*/  
+#endif
   BAT_VoltCur.cur_left  = cur_left_store * 100;
   BAT_VoltCur.cur_right = cur_right_store * 100;
 }
@@ -148,19 +148,21 @@ void readDHT() {
     
     temp1[0]=dht11_dat[2];
     temp2[0]=dht11_dat[3];
+    hum1[0]=dht11_dat[0];
+    hum2[0]=dht11_dat[1];
+#ifdef DEBUG_SENSOR_DHT
     Serial.print("Temperature: ");
     Serial.print(temp1[0]);
     Serial.print(".");
     Serial.print(temp2[0]);
     Serial.print(" C");
     Serial.print("    ");
-    hum1[0]=dht11_dat[0];
-    hum2[0]=dht11_dat[1];
     Serial.print("Humidity: ");
     Serial.print(hum1[0]);
     Serial.print(".");
     Serial.print(hum2[0]);
     Serial.println("%");
+#endif
     
   }
 }
