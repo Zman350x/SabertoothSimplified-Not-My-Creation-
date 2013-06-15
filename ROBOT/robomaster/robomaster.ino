@@ -135,8 +135,7 @@ void loop() {
 }
 
 void fast_loop() {
-    i2c_rc_read();
-
+  i2c_rc_read();
   mavlink_receive();
 }
 
@@ -168,7 +167,7 @@ void medium_loop() {
       medium_loopCounter++;
       // Send Voltage & Current
       send_mav_voltage_current();
-
+      send_mav_rc_values();
     break;
 
     // This case controls the slow loop

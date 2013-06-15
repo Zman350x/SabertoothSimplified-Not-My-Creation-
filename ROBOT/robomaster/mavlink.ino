@@ -69,3 +69,18 @@ void send_mav_dht_values() {
   mavlink_msg_dht11_data_pack(20, 20, &msg2, DHT_Vals.temp, DHT_Vals.hum);
   send_mav_message(&msg2);
 }
+
+void send_mav_rc_values() {
+  mavlink_message_t msg;
+  mavlink_msg_rc_channels_raw_pack(20, 30, &msg, 0, 1,
+  rc_i2c_dataset.c1,
+  rc_i2c_dataset.c2,
+  rc_i2c_dataset.c3,
+  rc_i2c_dataset.c4,
+  rc_i2c_dataset.c5,
+  rc_i2c_dataset.c6,
+  rc_i2c_dataset.c7,
+  rc_i2c_dataset.c8,
+  255);
+  send_mav_message(&msg);
+}
