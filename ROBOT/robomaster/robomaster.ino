@@ -6,6 +6,39 @@ FastSerialPort1(Serial1);
 FastSerialPort2(Serial2);
 FastSerialPort3(Serial3);
 
+#include <Wire.h>
+
+typedef struct {
+  uint8_t state: 1;
+  uint8_t debug: 1;
+  uint8_t override: 1;
+  uint8_t signal: 1;
+} RC_STATUS_REGISTER;
+
+typedef struct {
+  uint8_t drive_chan: 3;
+  uint8_t drive_reverse: 1;
+  uint8_t turn_chan: 3;
+  uint8_t turn_reverse: 1;
+} RCMAPPING_REGISTER;
+
+typedef struct {
+  RC_STATUS_REGISTER stateregister; // 0x00
+  uint16_t c1;        // 0x01 & 0x02
+  uint16_t c2;        // 0x03 & 0x04
+  uint16_t c3;        // 0x05 & 0x06
+  uint16_t c4;        // 0x07 & 0x08
+  uint16_t c5;        // 0x09 & 0x0A
+  uint16_t c6;        // 0x0B & 0x0C
+  uint16_t c7;        // 0x0D & 0x0E
+  uint16_t c8;        // 0x0F & 0x10
+  int8_t drive;       // 0x11
+  int8_t turn;        // 0x12
+  RCMAPPING_REGISTER rcmapping; // 0x13
+} RC_I2C_REGISTERS;
+
+static RC_I2C_REGISTERS rc_i2c_dataset;
+
 typedef struct {
   int16_t temp;
   int16_t hum;
@@ -21,6 +54,7 @@ static DHT_VALUES DHT_Vals;
 static VOLTAGECURRENT BAT_VoltCur;
 
 void setup() {
+  Wire.begin();
   Serial.begin(DEBUG_BAUD);
   Serial3.begin(TELPORT_BAUD);
   Serial.println("ROBOMASTER");
@@ -101,6 +135,8 @@ void loop() {
 }
 
 void fast_loop() {
+    i2c_rc_read();
+
   mavlink_receive();
 }
 

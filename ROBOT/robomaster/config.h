@@ -1,4 +1,6 @@
 
+#define RC_I2C_ADDR 0x18
+
 // TELEMTRIE
 #define DEBUG_BAUD 115200
 #define TELPORT_BAUD 19200
