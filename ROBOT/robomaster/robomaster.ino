@@ -51,6 +51,8 @@ static byte             slow_loopCounter;
 static byte             superslow_loopCounter;
 // Counter to trigger execution of 1 Hz processes
 static byte             counter_one_herz;
+// Counter to trigger execution of 5 Hz processes
+static byte             counter_five_herz;
 // % MCU cycles used
 static float            load;
 
@@ -82,6 +84,12 @@ void loop() {
       counter_one_herz = 0;
     }
 
+    counter_five_herz++;
+    if(counter_five_herz >= 250){
+      five_second_loop();
+      counter_five_herz = 0;
+    }
+
     if (millis() - perf_mon_timer > 20000) {
       if (mainLoop_count != 0) {
         resetPerfData();
@@ -89,7 +97,6 @@ void loop() {
     }
 
     fast_loopTimeStamp = millis();
-
   }
 }
 
@@ -168,7 +175,9 @@ static void slow_loop() {
 
 void one_second_loop() {
   mavlink_run();
+}
 
+void five_second_loop() {
   // Send DHT Values
   send_mav_dht_values();
 }
