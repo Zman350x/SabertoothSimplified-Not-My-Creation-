@@ -1,16 +1,17 @@
+/*global Backbone*/
+'use strict';
+
 var HeaderBar = Backbone.View.extend({
+  el: 'ul',
+  className: 'nav',
 
-  el: "ul",
-
-  className: "nav",
-
-  initialize: function() {
+  initialize: function () {
     this.setActive('menu-dashboard');
   },
 
-  setActive: function(ident) {
-    $("#mainmenu li").removeClass('active');
-    $("#mainmenu li."+ident).addClass('active');
+  setActive: function (ident) {
+    $('#mainmenu li').removeClass('active');
+    $('#mainmenu li.' + ident).addClass('active');
   }
 
 });

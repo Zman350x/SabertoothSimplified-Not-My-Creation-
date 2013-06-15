@@ -1,3 +1,5 @@
+/*global Backbone*/
+'use strict';
 window.GaugeComponent = Backbone.View.extend({
 
   initialize: function () {
