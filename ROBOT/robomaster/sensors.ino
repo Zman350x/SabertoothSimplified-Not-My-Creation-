@@ -25,7 +25,6 @@ float readBatVoltage() {
   double sensorValue = analogRead(VOLT_SENS_PORT);
   double SensedVoltageV  = ((sensorValue * InternalVcc) / 1024 /1000)-0.21;
   double SensedVoltageMv  = ((sensorValue * InternalVcc) / 1024)-210;
-  //Serial.println(((sensorValue * InternalVcc) / 1024));
   float calculatedVoltage = SensedVoltageMv * VOLT_SENS_MULTIPLIKATOR / 1000;
   bat_voltage_store = ((bat_voltage_store*9) + calculatedVoltage)/10;
   //Serial.println(calculatedVoltage);

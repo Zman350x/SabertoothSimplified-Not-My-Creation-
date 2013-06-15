@@ -57,3 +57,16 @@ void send_mav_message(mavlink_message_t* msg) {
   uint16_t len = mavlink_msg_to_send_buffer(buf, msg);
   Serial3.write(buf, len);
 }
+
+
+void send_mav_voltage_current() {
+  mavlink_message_t msg3;
+  mavlink_msg_voltagecurrent_pack(20, 20, &msg3, BAT_VoltCur.voltage, BAT_VoltCur.cur_left, BAT_VoltCur.cur_right);
+  send_mav_message(&msg3);
+}
+
+void send_mav_dht_values() {
+  mavlink_message_t msg2;
+  mavlink_msg_dht11_data_pack(20, 20, &msg2, DHT_Vals.temp, DHT_Vals.hum);
+  send_mav_message(&msg2);
+}

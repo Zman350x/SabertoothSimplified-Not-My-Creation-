@@ -23,7 +23,7 @@ static VOLTAGECURRENT BAT_VoltCur;
 void setup() {
   Serial.begin(DEBUG_BAUD);
   Serial3.begin(TELPORT_BAUD);
-  Serial.println("DHTxx test!");
+  Serial.println("ROBOMASTER");
   initSensors();
   
 }
@@ -123,6 +123,9 @@ void medium_loop() {
     //-------------------------------------------------
     case 3:
       medium_loopCounter++;
+      // Send Voltage & Current
+      send_mav_voltage_current();
+
     break;
 
     // This case controls the slow loop
@@ -137,6 +140,7 @@ void medium_loop() {
   readDHT();
   readBatVoltage();
   readCurrent();
+
 }
 
 
@@ -163,16 +167,10 @@ static void slow_loop() {
 }
 
 void one_second_loop() {
-        mavlink_run();
+  mavlink_run();
 
-    mavlink_message_t msg2;
-  mavlink_msg_dht11_data_pack(20, 20, &msg2, DHT_Vals.temp, DHT_Vals.hum);
-  send_mav_message(&msg2);
-
-    mavlink_message_t msg3;
-  mavlink_msg_voltagecurrent_pack(20, 20, &msg3, BAT_VoltCur.voltage, BAT_VoltCur.cur_left, BAT_VoltCur.cur_right);
-  send_mav_message(&msg3);
-
+  // Send DHT Values
+  send_mav_dht_values();
 }
 
 static void resetPerfData(void) {
