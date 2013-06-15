@@ -1,6 +1,4 @@
 void initSensors() {
-  //dht.begin();
-  
   initDHT();
 }
 
@@ -27,27 +25,16 @@ float readBatVoltage() {
   double SensedVoltageMv  = ((sensorValue * InternalVcc) / 1024)-210;
   float calculatedVoltage = SensedVoltageMv * VOLT_SENS_MULTIPLIKATOR / 1000;
   bat_voltage_store = ((bat_voltage_store*9) + calculatedVoltage)/10;
-  //Serial.println(calculatedVoltage);
   BAT_VoltCur.voltage = bat_voltage_store*100;
-  /*
-  Serial.print("VCC: ");
-  Serial.print(InternalVcc);
-  Serial.print(" - sensor = " );                       
-  Serial.print(sensorValue);
-  Serial.print(" - mv:");
-  Serial.print(SensedVoltageMv);
-  Serial.print(" - V:");
-  Serial.print(SensedVoltageV);
-  Serial.print(" - ");
-  Serial.print(bat_voltage_store);
-  Serial.println();
-  */
   return bat_voltage_store;
 }
 
 double cur_left_store = 0.0;
 double cur_right_store = 0.0;
 
+/*
+ * Read current from both sensors
+ */
 void readCurrent() {
   double cur_left = currentSensor(analogRead(CUR_SENS_LEFT_PIN));
   double cur_right = currentSensor(analogRead(CUR_SENS_RIGHT_PIN));
@@ -67,33 +54,23 @@ void readCurrent() {
   BAT_VoltCur.cur_right = cur_right_store * 100;
 }
 
+/*
+ * Calc current readings
+ */
 static double currentSensor(int RawADC) {
-
   int    Sensitivity    = 66; // mV/A
-
   long   InternalVcc    = readVccArduinoMega();
   double ZeroCurrentVcc = InternalVcc / 2;
   double SensedVoltage  = (RawADC * InternalVcc) / 1024;
   double Difference     = SensedVoltage - ZeroCurrentVcc;
   double SensedCurrent  = Difference / Sensitivity;
-  /*
-  Serial.print("ADC: ");
-  Serial.print(RawADC);
-  Serial.print("/1024");
-
-  Serial.print(", Sensed Voltage: ");
-  printDouble(SensedVoltage, 1);
-  Serial.print("mV");
-
-  Serial.print(", 0A at: ");
-  printDouble(ZeroCurrentVcc, 1);
-  Serial.print("mV, ");
-  */
   return SensedCurrent;                                        // Return the Current
-
 } 
 
 
+/*
+ * Read DHT Sensor
+ */
 void readDHT() {
   unsigned long dht11delay_currentMillis = millis();
 
@@ -162,7 +139,6 @@ void readDHT() {
     Serial.print(hum2[0]);
     Serial.println("%");
 #endif
-    
   }
 }
 
@@ -180,7 +156,9 @@ byte read_dht11_dat() {
 }
 
 
-// reads vcc in mV
+/*
+ * reads vcc in mV
+ */
 static long readVccArduinoMega() {
   long result;
   // Read 1.1V reference against AVcc
