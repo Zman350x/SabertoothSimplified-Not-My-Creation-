@@ -1,22 +1,22 @@
-var express = require('express')
-  , http = require('http');
+/*global MAVLink*/
+'use strict';
+var express = require('express');
 var app = express();
 var server = app.listen(3000);
 var io = require('socket.io').listen(server);
-var serialport = require("serialport");
+var serialport = require('serialport');
 var SerialPort = serialport.SerialPort; // localize object constructor
 
-var mavlink = require('./lib/mavlink_common_v1.0');
+require('./lib/mavlink_common_v1.0');
 var mavlinkParser = new MAVLink();
 
 
-var teleSerial = new SerialPort('/dev/cu.SLAB_USBtoUART', { 
-    //baudrate: 115200
-    baudrate: 19200
-    ,parser: serialport.parsers.raw
-    //,parser: serialport.parsers.readline(0xaa+0xff) 
+var teleSerial = new SerialPort('/dev/cu.SLAB_USBtoUART', {
+  baudrate: 19200,
+  parser: serialport.parsers.raw
 });
-app.configure(function(){
+
+app.configure(function () {
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());
@@ -28,17 +28,16 @@ app.configure(function(){
   app.use(app.router);
 });
 
-app.configure('development', function(){
+app.configure('development', function () {
   app.use(express.errorHandler());
 });
 
 //app.get('/', routes.index);
 
-console.log("Express server listening on port 3000");
+console.log('Express server listening on port 3000');
 
-teleSerial.on("data",function(chunk){
-  mavlinkParser.parseBuffer(chunk); 
-  //console.log(chunk);
+teleSerial.on('data', function (chunk) {
+  mavlinkParser.parseBuffer(chunk);
 });
 
 
@@ -49,8 +48,8 @@ io.sockets.on('connection', function (socket) {
     console.log(data);
   });
 
-  mavlinkParser.on('message', function(message) {
-    if (message.name !== "HEARTBEAT") {
+  mavlinkParser.on('message', function (message) {
+    if (message.name !== 'HEARTBEAT') {
       delete(message.msgbuf);
       delete(message.payload);
       delete(message.crc);
@@ -66,26 +65,4 @@ io.sockets.on('connection', function (socket) {
     }
     */
   });
-  /*
-  setInterval(function(){
-    var voltage = randomData(20,28,2);
-    var amp_left = randomData(-10,30,1);
-    socket.emit('mavlinkdata', {
-      voltage: randomData(20,28,2),
-      amp_combined: randomData(-10,35,2),
-      amp_left: amp_left,
-      amp_right: amp_left + randomData(-10,10,0),
-    });
-  }, 1000);
-  */
 });
-
-
-
-function randomData(min, max, precise) {
-  if (!precise)
-    precise = 0;
-  var number = (Math.random() * (max - min + 1)) + min;
-
-  return number.toFixed(precise);
-}
