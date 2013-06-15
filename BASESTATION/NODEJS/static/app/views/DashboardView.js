@@ -13,7 +13,8 @@ window.DashboardView = Backbone.View.extend({
 
     initGauges: function() {
       var ampAreas = [
-        steelseries.Section(-10, 10, 'rgba(0, 220, 0, 0.2)'),
+        steelseries.Section(0, 15, 'rgba(0, 220, 0, 0.2)'),
+        steelseries.Section(15, 25, 'rgba(255, 245, 90, 0.3)'),
         steelseries.Section(25, 30, 'rgba(220, 0, 0, 0.3)')
       ];
 
@@ -22,7 +23,7 @@ window.DashboardView = Backbone.View.extend({
       this.gauges.gaugeAmpLeft = new steelseries.Radial('gauge_ampleft', {
           gaugeType: steelseries.GaugeType.TYPE5,
           size: 171,
-          minValue: -30,
+          minValue: 0,
           maxValue: 30,
           backgroundColor: bgType,
           //section: sections,
@@ -37,7 +38,7 @@ window.DashboardView = Backbone.View.extend({
       this.gauges.gaugeAmpRight = new steelseries.Radial('gauge_ampright', {
           gaugeType: steelseries.GaugeType.TYPE5,
           size: 171,
-          minValue: -30,
+          minValue: 0,
           maxValue: 30,
           backgroundColor: bgType,
           //section: sections,
@@ -51,7 +52,7 @@ window.DashboardView = Backbone.View.extend({
       });
 
       var combinedAmpAreas = [
-        steelseries.Section(-10, 0, 'rgba(0, 220, 0, 0.2)'),
+        steelseries.Section(0, 30, 'rgba(0, 220, 0, 0.2)'),
         steelseries.Section(30, 40, 'rgba(255, 245, 90, 0.3)'),
         steelseries.Section(40, 50, 'rgba(220, 0, 0, 0.3)')
       ];
@@ -59,7 +60,7 @@ window.DashboardView = Backbone.View.extend({
       this.gauges.gaugeAmpCombined = new steelseries.Radial('gauge_ampere', {
           gaugeType: steelseries.GaugeType.TYPE5,
           size: 171,
-          minValue: -10,
+          minValue: 0,
           maxValue: 50,
           backgroundColor: bgType,
           area: combinedAmpAreas,
