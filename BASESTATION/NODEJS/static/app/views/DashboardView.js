@@ -151,6 +151,33 @@ window.DashboardView = Backbone.View.extend({
       alarmSound: 'js/alarm.mp3'
       */
     });
+
+    this.gauges.gaugeDrive = new steelseries.Radial('gauge_drive', {
+      gaugeType: steelseries.GaugeType.TYPE4,
+
+      titleString: 'Drive',
+      minValue: -127,
+      maxValue: 127,
+      size: 201,
+      lcdVisible: true,
+      lcdDecimals: 0,
+      thresholdVisible: false,
+      ledVisible: false
+    });
+
+    this.gauges.gaugeTurn = new steelseries.Radial('gauge_turn', {
+      gaugeType: steelseries.GaugeType.TYPE4,
+
+      titleString: 'Turn',
+      minValue: -127,
+      maxValue: 127,
+      size: 201,
+      lcdVisible: true,
+      lcdDecimals: 0,
+      thresholdVisible: false,
+      ledVisible: false
+    });
+
     return this;
   }
 });

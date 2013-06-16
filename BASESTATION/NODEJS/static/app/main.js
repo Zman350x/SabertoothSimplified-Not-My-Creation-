@@ -33,6 +33,10 @@ window.Router = Backbone.Router.extend({
       app.dashboardView.gauges.gaugeTemp.setValueAnimated(data.temperature_celsius);
       app.dashboardView.gauges.gaugeHum.setValueAnimated(data.humidity_percent);
       break;
+    case 'SABERTOOTH':
+      app.dashboardView.gauges.gaugeDrive.setValue(data.drive);
+      app.dashboardView.gauges.gaugeTurn.setValue(data.turn * -1);
+      break;
     }
 
   },
