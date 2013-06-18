@@ -7,6 +7,8 @@ FastSerialPort2(Serial2);
 FastSerialPort3(Serial3);
 
 #include <Wire.h>
+#include <TinyGPS.h>
+
 
 typedef struct {
   uint8_t state: 1;
@@ -53,9 +55,13 @@ typedef struct {
 static DHT_VALUES DHT_Vals;
 static VOLTAGECURRENT BAT_VoltCur;
 
+TinyGPS gps;
+
+
 void setup() {
   Wire.begin();
   Serial.begin(DEBUG_BAUD);
+  Serial1.begin(GPS_BAUD);
   Serial3.begin(TELPORT_BAUD);
   Serial.println("ROBOMASTER");
   initSensors();
@@ -136,6 +142,7 @@ void loop() {
 
 void fast_loop() {
   i2c_rc_read();
+  readGPS();
   mavlink_receive();
 }
 
@@ -211,6 +218,8 @@ static void slow_loop() {
 
 void one_second_loop() {
   mavlink_run();
+      send_mav_gps_raw_int();
+
 }
 
 void five_second_loop() {
