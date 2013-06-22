@@ -37,6 +37,16 @@ window.Router = Backbone.Router.extend({
       app.dashboardView.gauges.gaugeDrive.setValue(data.drive);
       app.dashboardView.gauges.gaugeTurn.setValue(data.turn * -1);
       break;
+    case 'RC_CHANNELS_RAW':
+      app.dashboardView.gauges.RC_CHAN_1.refresh(data.chan1_raw);
+      app.dashboardView.gauges.RC_CHAN_2.refresh(data.chan2_raw);
+      app.dashboardView.gauges.RC_CHAN_3.refresh(data.chan3_raw);
+      app.dashboardView.gauges.RC_CHAN_4.refresh(data.chan4_raw);
+      app.dashboardView.gauges.RC_CHAN_5.refresh(data.chan5_raw);
+      app.dashboardView.gauges.RC_CHAN_6.refresh(data.chan6_raw);
+      app.dashboardView.gauges.RC_CHAN_7.refresh(data.chan7_raw);
+      app.dashboardView.gauges.RC_CHAN_8.refresh(data.chan8_raw);
+      break;
     }
 
   },

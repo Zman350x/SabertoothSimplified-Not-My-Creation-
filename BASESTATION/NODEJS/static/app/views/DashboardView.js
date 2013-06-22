@@ -1,4 +1,4 @@
-/*global steelseries, Backbone*/
+/*global steelseries, Backbone, JustGage*/
 'use strict';
 window.DashboardView = Backbone.View.extend({
 
@@ -178,6 +178,27 @@ window.DashboardView = Backbone.View.extend({
       ledVisible: false
     });
 
+    this.gauges.RC_CHAN_1 = buildRCGauge('gauge_RC_CHAN_1', 'RC1');
+    this.gauges.RC_CHAN_2 = buildRCGauge('gauge_RC_CHAN_2', 'RC2');
+    this.gauges.RC_CHAN_3 = buildRCGauge('gauge_RC_CHAN_3', 'RC3');
+    this.gauges.RC_CHAN_4 = buildRCGauge('gauge_RC_CHAN_4', 'RC4');
+    this.gauges.RC_CHAN_5 = buildRCGauge('gauge_RC_CHAN_5', 'RC5');
+    this.gauges.RC_CHAN_6 = buildRCGauge('gauge_RC_CHAN_6', 'RC6');
+    this.gauges.RC_CHAN_7 = buildRCGauge('gauge_RC_CHAN_7', 'RC7');
+    this.gauges.RC_CHAN_8 = buildRCGauge('gauge_RC_CHAN_8', 'RC8');
+
     return this;
   }
 });
+
+function buildRCGauge(id, title) {
+  return new JustGage({
+      id: id,
+      value: 1500,
+      min: 900,
+      max: 2100,
+      title: title,
+      refreshAnimationTime: 50,
+      startAnimationTime: 0
+    });
+}
