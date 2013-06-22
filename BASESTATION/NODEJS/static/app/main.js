@@ -21,13 +21,13 @@ window.Router = Backbone.Router.extend({
   },
 
   onMavlinkData: function (data) {
-    console.log('onMavlinkData', data);
+    //console.log('onMavlinkData', data);
     switch (data.name) {
     case 'VOLTAGECURRENT':
       app.dashboardView.gauges.gaugeVoltage.setValueAnimated(data.voltage / 100);
-      app.dashboardView.gauges.gaugeAmpLeft.setValueAnimated(data.cur_left / 100);
-      app.dashboardView.gauges.gaugeAmpRight.setValueAnimated(data.cur_right / 100);
-      app.dashboardView.gauges.gaugeAmpCombined.setValueAnimated((data.cur_left / 100) + (data.cur_right / 100));
+      app.dashboardView.gauges.gaugeAmpLeft.setValue(data.cur_left / 100);
+      app.dashboardView.gauges.gaugeAmpRight.setValue(data.cur_right / 100);
+      app.dashboardView.gauges.gaugeAmpCombined.setValue((data.cur_left / 100) + (data.cur_right / 100));
       break;
     case 'DHT11_DATA':
       app.dashboardView.gauges.gaugeTemp.setValueAnimated(data.temperature_celsius);
