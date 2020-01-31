@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "serialport": "~1.1.0",
-    "express": "~3.2.4",
+    "express": "~4.17.1",
     "socket.io": "~0.9.14"
   },
   "optionalDependencies": {},
